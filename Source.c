@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
+//проверка на целочисленность ввода
 void check_int(int* x)
 {
 	int check;
@@ -24,6 +25,7 @@ void check_int(int* x)
 	}
 }
 
+//размер матрицы
 void size_of_matrix(int* vertices)
 {
 	printf("Enter the number of vertices of the graph: ");
@@ -36,6 +38,7 @@ void size_of_matrix(int* vertices)
 		} while (*vertices == 1);
 }
 
+//создание матрицы
 void create_matrix(int** Graph, int vertices)
 {
 	printf("Enter the length of the ribs.\n");
@@ -59,20 +62,16 @@ void create_matrix(int** Graph, int vertices)
 	}
 }
 
-void main()
+//алгоритм Флойда
+void floyd(int **Graph, int vertices)
 {
-	int vertices = 1, i, j, k, l, ** Graph;
-	size_of_matrix(&vertices);
-	Graph = malloc(vertices * sizeof(int));
-	for (int i = 0; i < vertices; i++)
-		Graph[i] = malloc(sizeof(int) * vertices);
-	create_matrix(Graph, vertices);
+	int i, j, k;
 	for (k = 0; k < vertices; k++)
 		for (i = 0; i < vertices; i++)
 			for (j = 0; j < vertices; j++)
 				if (Graph[i][j] > Graph[i][k] + Graph[k][j])
 					Graph[i][j] = Graph[i][k] + Graph[k][j];
-	printf("\n");
+	printf("\nNew matrix with the smallest distances between vertices:\n");
 	for (int i = 0; i < vertices; i++)
 	{
 		for (int j = 0; j < vertices; j++)
@@ -83,4 +82,15 @@ void main()
 		}
 		printf("\n");
 	}
+}
+
+void main()
+{
+	int vertices = 1, ** Graph;
+	size_of_matrix(&vertices);
+	Graph = malloc(vertices * sizeof(int));
+	for (int i = 0; i < vertices; i++)
+		Graph[i] = malloc(sizeof(int) * vertices);
+	create_matrix(Graph, vertices);
+	floyd(Graph, vertices);
 }
