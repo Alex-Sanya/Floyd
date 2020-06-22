@@ -8,7 +8,7 @@
 //нахождение кратчайших путей между парами вершин
 void main()
 {
-	int vertices = 1, ** Graph;
+	int vertices = 0, ** Graph;
 	size_of_matrix(&vertices);
 	Graph = malloc(vertices * sizeof(int));
 	for (int i = 0; i < vertices; i++)
@@ -19,3 +19,5 @@ void main()
 		free(Graph[i]);
 	free(Graph);
 }
+//4 -1 1 -1 3 -1 0 -1 1 5 -1 0 -1 -1 -1 -1 0
+//4 0 1 -1 -1 1 0 -1 -1 -1 -1 0 1 -1 -1 1 0

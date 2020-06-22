@@ -8,12 +8,29 @@ void size_of_matrix(int* vertices)
 {
 	printf("Enter the number of vertices of the graph: ");
 	check_enter(vertices);
-	if (*vertices == 1)
-		do
+	while (*vertices < 2)
 		{
 			printf("Enter a number greater than 1: ");
 			check_enter(vertices);
-		} while (*vertices == 1);
+		}
+}
+
+//вывод на печать матрицы
+void print_matrix(int** Graph, int vertices)
+{
+	for (int i = 0; i < vertices; i++)
+	{
+		for (int j = 0; j < vertices; j++)
+		{
+			if (Graph[i][j] == _CRT_INT_MAX / 2)//аналог бесконечности. Максимальное знаковое int'овое число
+				Graph[i][j] = -1;
+			if (Graph[i][j] < 0)
+				printf("%d ", Graph[i][j]);
+			else
+				printf(" %d ", Graph[i][j]);
+		}
+		printf("\n");
+	}
 }
 
 //создание матрицы
@@ -25,17 +42,8 @@ void create_matrix(int** Graph, int vertices)
 		for (int j = 0; j < vertices; j++)
 		{
 			printf("From %d to %d: ", i + 1, j + 1);
-			scanf("%d", Graph[i] + j);
+			check_enter(Graph[i] + j);
 		}
 	printf("Your adjacency matrix:\n");
-	for (int i = 0; i < vertices; i++)
-	{
-		for (int j = 0; j < vertices; j++)
-		{
-			printf("%d ", Graph[i][j]);
-			if (Graph[i][j] < 0)
-				Graph[i][j] = _CRT_INT_MAX / 2;
-		}
-		printf("\n");
-	}
+	print_matrix(Graph, vertices);
 }

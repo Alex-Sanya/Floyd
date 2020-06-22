@@ -15,12 +15,6 @@ void check_enter(int* x)
 			printf("Wrong input!\n");
 			continue;
 		}
-		if (*x <= 0)
-		{
-			while (getchar() != '\n');
-			printf("Enter a positive number!\n");
-			continue;
-		}
 		return;
 	}
 }

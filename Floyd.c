@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "Floyd.h"
+#include "matrix.h"
 
 //алгоритм Флойда
 void floyd(int** Graph, int vertices)
@@ -9,17 +10,14 @@ void floyd(int** Graph, int vertices)
 	for (k = 0; k < vertices; k++)
 		for (i = 0; i < vertices; i++)
 			for (j = 0; j < vertices; j++)
+			{
+				if (i == j)
+					Graph[i][j] = 0;//кратчайший путь из самого себя - 0
+				if (Graph[i][j] < 0)
+					Graph[i][j] = _CRT_INT_MAX/2;//аналог бесконечности. Максимальное знаковое int'овое число
 				if (Graph[i][j] > Graph[i][k] + Graph[k][j])
 					Graph[i][j] = Graph[i][k] + Graph[k][j];
+			}
 	printf("\nNew matrix with the smallest distances between vertices:\n");
-	for (int i = 0; i < vertices; i++)
-	{
-		for (int j = 0; j < vertices; j++)
-		{
-			if (Graph[i][j] == _CRT_INT_MAX / 2)
-				Graph[i][j] = 0;
-			printf("%d ", Graph[i][j]);
-		}
-		printf("\n");
-	}
+	print_matrix(Graph, vertices);
 }
