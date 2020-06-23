@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <limits.h>
 #include "matrix.h"
 #include "utl.h"
 
@@ -9,10 +10,10 @@ void size_of_matrix(int* vertices)
 	printf("Enter the number of vertices of the graph: ");
 	check_enter(vertices);
 	while (*vertices < 2)
-		{
-			printf("Enter a number greater than 1: ");
-			check_enter(vertices);
-		}
+	{
+		printf("Enter a number greater than 1: ");
+		check_enter(vertices);
+	}
 }
 
 //вывод на печать матрицы
@@ -22,7 +23,7 @@ void print_matrix(int** Graph, int vertices)
 	{
 		for (int j = 0; j < vertices; j++)
 		{
-			if (Graph[i][j] == _CRT_INT_MAX / 2)//аналог бесконечности. Максимальное знаковое int'овое число
+			if (Graph[i][j] == INT_MAX)//аналог бесконечности. Максимальное знаковое int'овое число
 				Graph[i][j] = -1;
 			if (Graph[i][j] < 0)
 				printf("%d ", Graph[i][j]);

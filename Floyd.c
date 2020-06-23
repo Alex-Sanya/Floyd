@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <limits.h>
 #include "Floyd.h"
 #include "matrix.h"
 
@@ -14,7 +15,10 @@ void floyd(int** Graph, int vertices)
 				if (i == j)
 					Graph[i][j] = 0;//кратчайший путь из самого себ€ - 0
 				if (Graph[i][j] < 0)
-					Graph[i][j] = _CRT_INT_MAX/2;//аналог бесконечности. ћаксимальное знаковое int'овое число
+					Graph[i][j] = INT_MAX;//аналог бесконечности. ћаксимальное знаковое int'овое число
+				if (Graph[i][k] == INT_MAX || Graph[k][j] == INT_MAX)
+					Graph[i][j] = INT_MAX;
+				else
 				if (Graph[i][j] > Graph[i][k] + Graph[k][j])
 					Graph[i][j] = Graph[i][k] + Graph[k][j];
 			}

@@ -17,4 +17,13 @@ void check_enter(int* x)
 		}
 		return;
 	}
+	/*int check = 0;
+	while (!check)
+	{
+		check = scanf("%d", x);
+		if (!check)
+			printf("\nIncorrect input. Try again: ");
+		fflush(stdin);
+	}
+	return;*/
 }
