@@ -24,7 +24,7 @@ void print_matrix(int** Graph, int vertices)
 		for (int j = 0; j < vertices; j++)
 		{
 			if (Graph[i][j] == INT_MAX)//аналог бесконечности. Максимальное знаковое int'овое число
-				Graph[i][j] = -1;
+			Graph[i][j] = -1;
 			if (Graph[i][j] < 0)
 				printf("%d ", Graph[i][j]);
 			else

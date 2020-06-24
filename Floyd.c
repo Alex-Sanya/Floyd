@@ -16,11 +16,9 @@ void floyd(int** Graph, int vertices)
 					Graph[i][j] = 0;//кратчайший путь из самого себя - 0
 				if (Graph[i][j] < 0)
 					Graph[i][j] = INT_MAX;//аналог бесконечности. Максимальное знаковое int'овое число
-				if (Graph[i][k] == INT_MAX || Graph[k][j] == INT_MAX)
-					Graph[i][j] = INT_MAX;
-				else
-				if (Graph[i][j] > Graph[i][k] + Graph[k][j])
-					Graph[i][j] = Graph[i][k] + Graph[k][j];
+				if (!(Graph[i][k] == INT_MAX || Graph[k][j] == INT_MAX))
+					if (Graph[i][j] > Graph[i][k] + Graph[k][j])
+						Graph[i][j] = Graph[i][k] + Graph[k][j];
 			}
 	printf("\nNew matrix with the smallest distances between vertices:\n");
 	print_matrix(Graph, vertices);
